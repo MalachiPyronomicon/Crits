@@ -4,7 +4,7 @@
 new Handle:crits = INVALID_HANDLE;
 new Handle:chance = INVALID_HANDLE;
 
-#define PLUGIN_VERSION "0.1"
+#define PLUGIN_VERSION "0.2"
 
 public Plugin:myinfo = 
 {
@@ -34,10 +34,11 @@ public Action:TF2_CalcIsAttackCritical(client, weapon, String:weaponname[], &boo
 	if (GetConVarFloat(chance) > GetRandomFloat(0.0, 1.0))
 	{
 		result = true;
-		return Plugin_Handled;	
+		return Plugin_Changed;	
 	}
-	
-	result = false;
-	
-	return Plugin_Handled;
+	else
+	{	
+		result = false;
+		return Plugin_Changed;
+	}
 }
